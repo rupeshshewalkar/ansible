@@ -1,0 +1,17 @@
+--- # Variable section 
+- hosts: web
+  user: user 
+  become: yes
+  connection: ssh
+  gather_facts: no 
+  
+  vars: 
+   playbook_version: 1.0.0
+
+  vars_files:
+   - conf/copywrite.yaml
+   - conf/author.yaml
+  
+  vars_prompt:
+   - name: domain_name
+     prompt: Enter domain Name 

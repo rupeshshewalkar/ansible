@@ -1,0 +1,13 @@
+--- # this example of starting /stepping task
+- hosts: web
+  connection: ssh
+  user: user
+  become: yes
+ 
+  tasks: 
+    - name: install lynx
+      action: yum name=lynx state=latest update_cache=yes
+    - name: install telnet
+      action: yum name=telnet state=latest update_cache=yes
+    - name: install httpd
+      action: yum name=httpd  state=latest update_cache=yes

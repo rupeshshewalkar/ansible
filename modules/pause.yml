@@ -1,0 +1,15 @@
+--- # Pause example
+- hosts: web
+  user: user
+  connection: ssh
+  become: yes
+  gather_facts: no
+
+  tasks:
+   - name: install apache/httpd
+     action: yum name=httpd state=latest update_cache=yes
+   - pause:
+    
+   - name: check lynx package install or not
+     action: yum name=lynx state=present
+   

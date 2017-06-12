@@ -1,0 +1,5 @@
+--- # lookup for DNS Queries example
+
+- hosts: localhost
+  tasks: 
+   - debug: msg=" Dns lookup of www.google.com is {{ lookup('dig', 'gmail.com./MX') }}"

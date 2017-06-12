@@ -1,0 +1,15 @@
+--- # conditional apache installation 
+- hosts: web
+  user: user
+  connection: ssh
+  become: yes
+  gather_facts: yes
+
+  tasks: 
+   - name: installation apache on apropiate OS ( Redhat/ centos)
+     action: yum name=httpd state=latest update_cache=yes
+     when: ansible_os_family == "RedHat"
+   
+   - name: installation apache on apropiate OS ( Debian/ Ubuntu)
+     action: apt name=apache2 state=latest update_cache=yes
+     when: ansible_os_family == "Debian"

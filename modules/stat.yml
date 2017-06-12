@@ -1,0 +1,12 @@
+--- # stat example
+- hosts: web
+  user: user
+  connection: ssh
+  become: yes
+  gather_facts: no
+ 
+  tasks:
+   - stat: path=/home/user/ab
+     register: status
+   - debug: msg="This is directory"
+     when: status.stat.isdir is defined and status.stat.isdir

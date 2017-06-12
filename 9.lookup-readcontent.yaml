@@ -1,0 +1,14 @@
+--- # read the content of file (Lookups occur on the local computer, not on the remote computer.)
+
+- hosts: db
+  user: user
+  connection: ssh
+  become: yes
+  gather_facts: no
+ 
+  vars:
+   issue: "{{ lookup('file', '/etc/issue') }} "
+
+  tasks:
+   - debug: msg="The Remote OS is {{ issue }} " 
+ 

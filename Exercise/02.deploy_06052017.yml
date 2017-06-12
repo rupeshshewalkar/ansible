@@ -1,0 +1,13 @@
+--- # exrcise Exercise: Create a Simple Playbook
+- hosts: web
+  user: user
+  connection: ssh
+  become: yes
+  gather_facts: no
+
+  tasks:
+   - name: install lynx 
+     action: yum name=lynx state=latest update_cache=yes
+
+   - name: check telnet installed or not
+     action: yum name=telnet state=present

@@ -1,0 +1,13 @@
+--- # jinja2 template
+- hosts: web
+  user: user
+  connection: ssh
+  become: yes
+  gather_facts: no
+
+  vars:
+    host_name: web
+    user_name: user
+  tasks:
+   - name: creating /home/user/test.conf 
+     template: src=test.conf.j2 dest=/home/user/test.conf owner=user group=user 

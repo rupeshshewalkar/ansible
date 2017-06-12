@@ -1,0 +1,21 @@
+--- # variable section 
+- hosts: web
+  user: user
+  connection: ssh
+  become: yes
+  gather_facts: yes
+  
+  vars:
+   playbook_version: 1.0
+ 
+  vars_files:
+   - conf/copyright.yml
+   - conf/webdefaults.yml
+
+  tasks:
+   - name: install apache
+     action: yum name=httpd state=latest update_cache=yes
+
+   - name: install lynx
+     action: yum name=httpd state=present update_cache=yes
+

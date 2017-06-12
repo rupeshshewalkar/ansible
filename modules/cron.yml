@@ -1,0 +1,10 @@
+--- # cron example
+- hosts: web
+  user: user
+  connection: ssh
+  gather_facts: no
+
+  tasks:
+   - cron: 
+      name: "list dir"
+      state: absent

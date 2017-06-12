@@ -1,0 +1,14 @@
+--- # user example
+- hosts: web
+  user: user
+  connection: ssh
+  become: yes
+  gather_facts: yes
+ 
+  tasks:
+   - user: 
+       name: tst
+       comment: "tst user"
+       shell: /bin/bash
+       group: wheel 
+       state: absent 

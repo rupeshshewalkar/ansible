@@ -1,0 +1,4 @@
+--- # lookup with environment variable 
+- hosts: db
+  tasks: 
+   - debug: msg="Environment variable of PWD is {{ lookup('env','PWD' ) }}"

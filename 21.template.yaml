@@ -1,0 +1,14 @@
+--- # template example
+- hosts: web
+  user: user
+  connection: ssh
+  gather_facts: yes
+  become: yes
+ 
+  vars:
+    hosts: web
+    user: user
+  tasks:
+   - name: prepare /homr/user/test.conf 
+     template: src=test.conf.j2 dest=/home/user/test.conf owner=user group=user mode=750
+

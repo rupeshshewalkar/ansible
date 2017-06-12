@@ -1,0 +1,16 @@
+--- # asyncronous polling example
+- hosts: web
+  user: user
+  connection: ssh
+  gather_facts: no 
+  become: yes
+
+  tasks:
+   - name : simulate long running op (15 sec), wait for up to 45 sec, poll every 5 sec 
+     command: /bin/sleep 15
+     async: 45
+     poll: 5 
+     register: status
+   - debug: var=status
+ 
+

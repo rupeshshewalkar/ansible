@@ -1,0 +1,10 @@
+--- # Variable example
+- hosts: web
+  vars:
+   pkg_name: lynx
+  tasks:
+   - name: Installtion of lynx using variable
+     yum: 
+      name: "{{ pkg_name }}" 
+      state: absent 
+      update_cache: True

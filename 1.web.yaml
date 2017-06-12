@@ -1,0 +1,6 @@
+--- # First playbook
+- hosts: web
+  tasks: 
+  - name: Install lynx 
+    yum: pkg=lynx state=absent update_cache=true
+...

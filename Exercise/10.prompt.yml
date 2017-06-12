@@ -1,0 +1,16 @@
+--- # prompt example
+
+- hosts: web
+  user: user
+  connection: ssh
+  gather_facts: no 
+  become: yes
+ 
+  vars_prompt:
+   - name: pkg 
+     prompt: "Enter Package Name: "
+     default: telnet
+
+  tasks:
+   - name:  install custom package
+     action: yum name={{ pkg }} state=latest update_cache=yes

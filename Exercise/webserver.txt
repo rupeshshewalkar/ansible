@@ -1,0 +1,9 @@
+- select remote server on which playbook will run
+- user by which playbook will run
+- connection make by ssh 
+- skipping gather facts 
+- becoming sudo 
+- capture time stamp using raw module
+- install lynx,telnet & lynx browser 
+- capture a log of all installed packages 
+- capture post time stamp

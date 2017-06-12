@@ -1,0 +1,10 @@
+--- # copy example
+- hosts: web
+  user: user
+  become: yes
+  connection: ssh
+  gather_facts: no 
+ 
+  tasks:
+   - name: copy test4.txt into /home/user/
+     copy: src=files/text4.txt dest=/home/user/ mode=644 owner=user group=user 

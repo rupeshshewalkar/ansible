@@ -1,0 +1,15 @@
+--- # installation on telnet
+
+- hosts: web
+  user: user
+  connection: ssh
+  become: yes
+  gather_facts: no
+ 
+  vars:
+    pkg_name: telnet
+
+  tasks:
+   - name: installation telnet
+     action: yum name=telnet state=latest update_cache=yes
+

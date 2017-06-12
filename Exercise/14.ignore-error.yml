@@ -1,0 +1,14 @@
+--- # handling error
+- hosts: web
+  user: user
+  connection: ssh
+  become: yes
+  gather_facts: no
+
+  tasks:
+   - name: command always failed
+     command: /usr/bin/false
+     ignore_errors: yes
+
+   - name: install lynx
+     action: yum name=telnet state=latest update_cache=yes

@@ -1,0 +1,15 @@
+--- # Run once example
+- hosts: all
+  gather_facts: no 
+  tasks: 
+   - name: Run command Date ( which execute on only once on first node)
+     command: /usr/bin/date
+     run_once: true 
+     register: output_date
+   - debug: msg= "Current Date is {{ output_date }}"
+
+   - name: Run command uptime ( we are running uptime command without runonce so it will execute on all nodes)
+     command: /usr/bin/uptime
+     register: uptime
+   - debug: msg=" Uptime is {{uptime}}"
+      

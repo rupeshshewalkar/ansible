@@ -1,0 +1,9 @@
+--- # Variable called from file
+- hosts: db 
+  vars_files:
+   - var.yaml
+  tasks: 
+   - name: installation of lynx using varible declarition from file
+     apt: name={{ pkg_name }} state=absent update_cache=yes
+
+      

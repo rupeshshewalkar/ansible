@@ -1,0 +1,9 @@
+--- # script example
+- hosts: web
+  user: user
+  become: yes
+  connection: ssh
+  gather_facts: no
+
+  tasks:
+   - script: /home/user/Playbook/modules/system_uptime.sh

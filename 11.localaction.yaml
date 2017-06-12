@@ -1,0 +1,12 @@
+--- # Localaction example
+# local action will be perform only locally, also bypass ssh connection 
+
+- hosts: localhost
+  user: user
+  connection: local
+  gather_facts: yes
+  become: yes
+  tasks:
+   - name: installation lynx
+     action: yum name=lynx state=latest update_cache=yes
+

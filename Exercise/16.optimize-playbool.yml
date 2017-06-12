@@ -1,0 +1,38 @@
+--- # playbook make playbook from outline
+#- select remote server on which playbook will runa
+#- user by which playbook will run
+#- connection make by ssh 
+#- skipping gather facts 
+#- becoming sudo 
+
+- hosts: web  
+  user: user
+  connection: ssh
+  gather_facts: no 
+  become: yes
+
+  tasks:  
+    - name: capture time stamp 
+      command: /usr/bin/date 
+      register: start
+    - debug: var=start
+   
+    - name: install httpd, telnet & lynx browser
+      action: yum name={{ item }} state=latest update_cache=yes
+      with_items:
+       - lynx
+       - telnet
+       - httpd 
+      notify: start httpd   
+    
+    - name: capture all installed packages
+      raw: yum list installed > /home/user/pkg_install.log
+
+    - name: capture time stamp stop
+      command: /usr/bin/date 
+      register: stop
+    - debug: var=stop
+   
+  handlers:
+   - name: start httpd
+     action: service name=httpd state=restarted enabled=yes

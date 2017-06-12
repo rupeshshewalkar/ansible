@@ -1,0 +1,15 @@
+--- # prompt package name example
+
+- hosts: web
+  user: user
+  connection: ssh
+  gather_facts: no
+  become: yes
+ 
+  vars_prompt:
+   - name: package_name
+     prompt: "Enter Package name: "
+
+  tasks:
+   - name: installation of package {{ package_name }}
+     action: yum name={{ package_name }} state=latest update_cache=yes

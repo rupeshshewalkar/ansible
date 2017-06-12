@@ -1,0 +1,10 @@
+--- # lookup env HOME variable
+- hosts: web
+  user: user
+  connection: ssh
+  become: yes
+  gather_facts: no
+ 
+  tasks:
+   - debug: msg=" Remote home value {{ lookup('env','HOME') }}"
+     

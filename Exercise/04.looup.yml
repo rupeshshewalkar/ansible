@@ -1,0 +1,15 @@
+--- # creating users using loop 
+
+- hosts: web
+  user: user
+  connection: ssh
+  become: yes
+  gather_facts: no
+ 
+  tasks:
+   - name : adding multiple users to remote server
+     action: user name={{ item }} state=absent
+     with_items:
+      - user1
+      - user2
+      - user3

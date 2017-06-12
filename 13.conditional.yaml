@@ -1,0 +1,11 @@
+--- # conditional example
+- hosts: db
+  user: user
+  connection: ssh
+  gather_facts: yes
+  become: yes
+ 
+  tasks:
+   - name: installation of http with appropiate OS (Redhat/Centos)
+     action: yum name=httpd state=latest update_cache=yes
+     when: ansible_os_family=="RedHat"

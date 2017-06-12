@@ -1,0 +1,14 @@
+--- # loop exmple 
+
+- hosts: web
+  user: user
+  connection: ssh
+  gather_facts: no
+  become: yes
+  tasks:
+   - name: installation of multiple package i.e lynx, telnet, dos2unix
+     action: yum name={{ item }} state=absent update_cache=yes
+     with_items:
+       - lynx
+       - telnet
+       - dos2unix

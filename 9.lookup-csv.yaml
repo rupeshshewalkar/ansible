@@ -1,0 +1,7 @@
+--- # lookup example using csv file
+
+- hosts: web
+  user: user
+  
+  tasks:
+   - debug: msg="The employee code of Amit is {{ lookup('csvfile', 'Amit file=employee.csv delimiter=, default=NO_Match col=2') }} "

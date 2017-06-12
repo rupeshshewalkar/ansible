@@ -1,0 +1,19 @@
+--- # task section 
+- hosts: web
+  user: user
+  connection: ssh
+  gather_facts: no
+  become: yes
+
+  vars:
+   pkg_name: lynx
+
+  vars_files:
+   - conf/author.yaml
+   - conf/copywrite.yaml
+
+  tasks:
+   - name: installation lynx browser
+     action: yum name={{ pkg_name}} state=latest update_cache=yes
+  
+

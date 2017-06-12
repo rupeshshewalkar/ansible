@@ -1,0 +1,15 @@
+--- # install http using notify 
+- hosts: web
+  user: user
+  connection: ssh
+  become: yes
+  gather_facts: no 
+
+  tasks:
+   - name: install apache 
+     action: yum name=httpd state=absent update_cache=yes
+     notify: Restart Httpd
+
+  handlers:
+   - name: Restart Httpd
+     action: service name=httpd state=restarted enabled=yes

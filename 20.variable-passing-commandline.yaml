@@ -1,0 +1,10 @@
+--- # variable passing through commandling
+- hosts: "{{ hosts }}"
+  user: "{{ user }}"
+  connection: ssh
+  become: yes
+  gather_facts: no
+  
+  tasks:
+   - name: install lynx 
+     action: yum name={{ pkg }} state=latest

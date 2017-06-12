@@ -1,0 +1,15 @@
+--- # Run once
+
+- hosts: all
+  user: user
+  connection: ssh
+  gather_facts: no
+  become: yes
+ 
+  tasks:
+   - name: Run uptime command
+     command: /usr/bin/uptime >> /home/user/uptime.log
+ 
+   - name: listing /var directory 
+     raw: ls -al /var >> /home/user/dir.list
+     run_once: true

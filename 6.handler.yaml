@@ -1,0 +1,19 @@
+--- # Handler section 
+- hosts: web
+  user: user
+  connection: ssh
+  gather_facts: no
+  become: yes 
+
+  vars: 
+    pkg_name: httpd
+
+  tasks:
+   - name: install httpd 
+     action: yum name={{pkg_name}} state=latest update_cache=yes 
+     notify: Restart-httpd 
+  
+  handlers:
+   - name: Restart-httpd
+     action: service name=httpd state=restarted enabled=yes
+     become: yes

@@ -1,0 +1,23 @@
+--- # Tag example
+- hosts: web
+  user: user
+  connection: ssh
+  become: yes
+  gather_facts: no
+
+  tasks:
+   - name: install telnet
+     action: yum name=telnet state=latest update_cache=yes
+     tags: 
+       - packages
+  
+   - name: install lynx
+     action: yum name=lynx state=latest update_cache=yes
+     tags: 
+       - packages
+
+   - name: check telnet installed or not
+     raw: yum list installed | grep telnet >> /home/user/pkg.log
+     tags: 
+       - logging  
+  
