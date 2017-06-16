@@ -1,0 +1,9 @@
+---
+# handlers file for webservers
+- name: Restart httpd
+  action: service name={{ apache_redhat }} state=started enabled=yes
+
+- name: Restart apache2
+  action: service name={{ apache_debian }} state=started enabled=yes
+
+ 

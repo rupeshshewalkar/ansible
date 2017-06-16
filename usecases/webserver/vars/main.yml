@@ -1,0 +1,9 @@
+---
+# vars file for webserver
+
+apache_redhat: httpd
+apache_debian: apache2
+apache_fqdn: "{{ ansible_fqdn }}"
+apache_docroot_redhat: "/var/www/html/{{ ansible_fqdn }}"
+apache_docroot_debian: "/var/www/{{ ansible_fqdn }}"
+playbook_path: /home/user/Playbook/usecases/webserver

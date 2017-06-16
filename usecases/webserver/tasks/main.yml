@@ -1,0 +1,44 @@
+---
+# tasks file for webserver
+- name: install httpd on Redhat/Centos
+  action: yum name={{ apache_redhat }} state=latest update_cache=yes
+  when: ansible_os_family == "RedHat"
+  notify: Redhat HTTP restart
+
+- name: install httpd on Debian/Ubuntu
+  action: apt name={{ apache_debian }} state=latest update_cache=yes
+  when: ansible_os_family == "Debian"
+  notify: Debian HTTP restart
+
+- name: copy Redhat-vhost file 
+  template: src={{ playbook_path }}/files/vhost_Redhat.conf.j2 dest=/etc/httpd/conf.d/{{ ansible_fqdn }}.conf owner=root group=root mode=644
+  when: ansible_os_family == "RedHat"
+
+- name: copy Redhat-vhost file 
+  template: src={{ playbook_path }}/files/vhost_debian.conf.j2 dest=/etc/apache2/sites-available/{{ ansible_fqdn }}.conf owner=root group=root mode=644
+  when: ansible_os_family == "Debian"
+  notify: a2ensite
+
+- name: Create logs & docroot directories with apropriate path & OS 
+  file: path={{ item }} state=directory mode=755 owner=root group=root
+  with_items:
+    - "{{ apache_docroot_redhat }}/logs/"
+    - "{{ apache_docroot_redhat }}"
+  when: ansible_os_family == "RedHat"
+
+- name: Create logs & docroot directories with apropriate path & OS 
+  file: path={{ item }} state=directory mode=755 owner=root group=root
+  with_items:
+    - "{{ apache_docroot_debian }}/logs/"
+    - "{{ apache_docroot_debian }}"
+  when: ansible_os_family == "Debian"
+
+- name: copy index.html file into docroot 
+  template: src={{ playbook_path }}/files/index.html.j2 dest={{ apache_docroot_redhat }}/index.html owner=root group=root mode=644
+  when: ansible_os_family == "RedHat"
+  notify: Redhat HTTP restart
+
+- name: copy index.html file into docroot 
+  template: src={{ playbook_path }}/files/index.html.j2 dest={{ apache_docroot_debian }}/index.html owner=root group=root mode=644
+  when: ansible_os_family == "Debian"
+  notify: Debian HTTP restart

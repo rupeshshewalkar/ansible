@@ -1,0 +1,7 @@
+<VirtualHost *:80>
+    ServerAdmin webmaster@localhost
+    ServerName  {{ ansible_fqdn }}
+    DocumentRoot  {{ apache_docroot_redhat }}
+    ErrorLog {{ apache_docroot_redhat }}/logs/error.log
+    CustomLog {{ apache_docroot_redhat }}/logs/access.log combined
+</VirtualHost>

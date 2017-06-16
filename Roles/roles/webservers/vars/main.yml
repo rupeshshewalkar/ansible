@@ -1,0 +1,4 @@
+---
+# vars file for webservers
+apache_redhat: httpd
+apache_debian: apache2

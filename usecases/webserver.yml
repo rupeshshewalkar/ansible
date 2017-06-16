@@ -1,0 +1,23 @@
+--- # installation of webserver on Linux ( Redhat/Centos/Debian/Ubuntu)
+- hosts: web
+  user: user
+  become: yes
+  become_method: sudo
+  connection: ssh
+  gather_facts: yes
+
+  pre_tasks:
+    - name: Record Start Time
+      raw: /usr/bin/date
+      register: start_time
+    - debug: var=start_time
+
+  roles:
+    - webserver  
+  
+  post_tasks:
+    - name: Record Stop Time
+      raw: /usr/bin/date
+      register: stop_time
+    - debug: var=stop_time
+

@@ -1,0 +1,16 @@
+--- # role example
+- hosts: db
+  user: user
+  become: yes
+  become_method: sudo
+  gather_facts: yes
+  connection: ssh
+
+  pre_tasks:
+    - name: record start time of playbook play
+      raw: "/bin/date >> /home/user/start-task.log"
+  roles:
+   - webservers 
+  post_tasks:
+    - name: record end time of playbook play
+      raw: "/bin/date >> /home/user/end-task.log"

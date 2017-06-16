@@ -1,0 +1,13 @@
+--- # find 
+- hosts: web
+  become: yes
+  become_method: sudo
+  connection: ssh
+  gather_facts: no
+  user: user
+
+  tasks:
+   - name: " find fstab file in /etc"
+     action: find path="/etc" pattern="fstab*"
+     register: result
+   - debug: var=result

@@ -1,0 +1,14 @@
+---
+# handlers file for webserver
+
+- name: Redhat HTTP restart
+  action: service name={{ apache_redhat }} state=restarted enabled=yes
+
+- name: Debian HTTP restart
+  action: service name={{ apache_debian }} state=restarted enabled=yes
+
+- name: a2ensite
+  command: "{{ item }}"
+  with_items: 
+    - "a2ensite {{ ansible_fqdn}}.conf"  
+    - "a2dissite 000-default.conf"

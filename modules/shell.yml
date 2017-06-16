@@ -1,0 +1,10 @@
+--- # shell example
+- hosts: web
+  user: user
+  connection: ssh
+  become: yes
+  gather_facts: no 
+ 
+  tasks: 
+    - name: run uptime & create uptime.log in /home/user/log
+      shell: /usr/bin/uptime >> uptime.log chdir=/home/user/log

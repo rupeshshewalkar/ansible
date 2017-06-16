@@ -1,0 +1,24 @@
+- build webserver on Redhat/Debian 
+- Run Playbook using ansible user i.e user
+- Enable sudo access to ansible user i.e user
+- Connection with ssh instead of paramiko 
+- Gather Facts 
+- Define variables 
+  - Package name apache2 for Debian/ubuntu & httpd for Redhat 
+  - Httpd version if any specific 
+  - Define FQDN for apache configuation 
+  - Document Root 
+
+- Task section 
+  - Install httpd/apache2 with apropriate OS specific 
+  - Copy apache configuration i.e /etc/httpd/conf/httpd.conf with apropriate OS specific 
+  - Create VHOST configuration with apropriate OS specific 
+  - Create VHOST directory with apropriate OS specific 
+  - Copy source code in document Root directory 
+
+- Handler section  
+
+  - Restart httpd service with apropriate os specific 
+  - Test 80 port open
+  - access url with FQDN 
+
